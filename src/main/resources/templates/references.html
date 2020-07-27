@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="template">
+<head>
+    <meta charset="UTF-8">
+    <title>Réferences</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container justify-content-center mt-3">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="card" style="border-radius: 25px">
+                    <div class="card-body">
+                        <h5 class="display-4 mx-4 mb-4">Réferences</h5>
+                        <hr class="mb-5"/>
+                        <div class="container mt-3">
+                            <table class="table table-hover" style="border-radius: 20px" id="table">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Num. Réferences</th>
+                                    <th>Num. Emplacement</th>
+                                    <th>Mélanges</th>
+                                </tr>
+                                <tr th:each="m:${melangeRefs}">
+                                    <td th:text="${m.getId()}"></td>
+                                    <td th:text="${m.getNumRef()}"></td>
+                                    <td th:text="${m.getEmplacement().numEmplacement}"></td>
+                                    <td>
+                                        <a th:href="@{/mlgs(idEmp=${m.emplacement.id},idRef=${m.id})}">mélanges</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
