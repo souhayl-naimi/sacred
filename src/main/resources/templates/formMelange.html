@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="template">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire Mélanges</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card py-4 my-4" style="border-radius: 25px">
+                    <div class="card-body">
+                        <h3 class="card-title text-muted " th:if="${melange.id==null}">Ajouter une Mélanges</h3>
+                        <h3 class="card-title text-muted " th:if="${melange.id!=null}">Mettre à jour une Mélanges</h3>
+                        <hr class="mb-1"/>
+                        <form class="mt-3" th:action="@{saveMelange}" method="post">
+                            <div class="form-group">
+                                <label class="control-label">ID : </label>
+                                <label class="control-label" th:if="${melange.id!=null}"  th:text="${melange.id}"></label>
+                                <label class="control-label" th:if="${melange.id==null}">To Be Generated</label>
+                                <input type="hidden" name="id" class="form-control" style="border-radius: 25px" th:value="${melange.id}">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Num Lot : </label>
+                                <input type="text" name="numLot" class="form-control" th:value="${melange.numLot}"
+                                       style="border-radius: 25px">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Melange Reference : </label>
+                                <select name="melangeRef" >
+                                    <option th:each="r:${refList}" th:value="${r.id}" th:text="${r.getNumRef()}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Emplacement  : </label>
+                                <select name="empName" >
+                                    <option th:each="e:${empList}" th:value="${e.getNumEmplacement()}" th:text="${e.getNumEmplacement()}"></option>
+                                </select>
+                            </div>
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <button align="center" class="btn btn-outline-primary" style="border-radius: 25px"
+                                                type="submit">Enregistrer
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
