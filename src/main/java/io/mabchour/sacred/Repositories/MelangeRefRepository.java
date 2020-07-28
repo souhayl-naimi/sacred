@@ -9,4 +9,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface MelangeRefRepository extends JpaRepository<MelangeRef, Long> {
     public Page<MelangeRef> findByEmplacement_Id(Long id, Pageable pageable);
+    public Page<MelangeRef> findByNumRefContainsIgnoreCase(String numRef, Pageable pageable);
 }

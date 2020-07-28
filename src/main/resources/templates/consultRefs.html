@@ -4,7 +4,7 @@
       layout:decorator="template">
 <head>
     <meta charset="UTF-8">
-    <title>Consultation Des Mélanges</title>
+    <title>Consultation Des Réferences</title>
 </head>
 <body>
 <div layout:fragment="content">
@@ -15,36 +15,30 @@
                     <div class="card-body">
                         <h5 class="display-4 mx-4 mb-4">Consulter</h5>
                         <hr class="mb-5"/>
-                        <form class="form-inline" th:action="@{consultMlgs}" method="get">
-                            <input class="form-control mr-sm-2" type="text" name="numLot" style="border-radius: 25px"
-                                   th:value="${numLot}" placeholder="Search">
+                        <form class="form-inline" th:action="@{consultRefs}" method="get">
+                            <input class="form-control mr-sm-2" type="text" name="numRef" style="border-radius: 25px"
+                                   th:value="${numRef}" placeholder="Search">
                             <button class="btn btn-outline-primary my-2 my-sm-0" style="border-radius: 25px"
                                     type="submit">
                                 Chercher
                             </button>
-                            <label style="margin-left: 2mm; font-weight: bold">Nb. Mélanges : </label>
+                            <label style="margin-left: 2mm; font-weight: bold">Nb. Réferences : </label>
                             <label style="margin-left: 4mm; " th:text="${result}"></label>
                         </form>
                         <div class="container mt-3">
                             <table class="table table-hover" style="border-radius: 20px" id="table">
                                 <tr>
                                     <th>ID</th>
-                                    <th>Num. Lot</th>
-                                    <th>Num. Ref</th>
+                                    <th>Num. Réference</th>
                                     <th>Num. Emplacement</th>
-                                    <th>Date. Fabrication</th>
-                                    <th>Date. Creation</th>
                                 </tr>
-                                <tr th:each="m:${melanges}">
-                                    <td th:text="${m.getId()}"></td>
-                                    <td th:text="${m.getNumLot()}"></td>
-                                    <td th:text="${m.getMelangeRef().getNumRef()}"></td>
-                                    <td th:text="${m.getMelangeRef().getEmplacement().getNumEmplacement()}"></td>
-                                    <td th:text="${m.getDateFabrication()}"></td>
-                                    <td th:text="${m.getDateReception()}"></td>
+                                <tr th:each="r:${refs}">
+                                    <td th:text="${r.id}"></td>
+                                    <td th:text="${r.numRef}"></td>
+                                    <td th:text="${r.emplacement.numEmplacement}"></td>
                                     <td>
-                                        <form th:action="@{deleteMelange}" method="post">
-                                            <input type="hidden" name="id" th:value="${m.id}"/>
+                                        <form th:action="@{deleteRef}" method="post">
+                                            <input type="hidden" name="id" th:value="${r.id}"/>
                                             <input type="hidden" name="page" th:value="${currentPage}"/>
                                             <input type="hidden" name="size" th:value="${size}"/>
                                             <button type="submit" style="border-radius: 25px"
@@ -60,7 +54,7 @@
                                 <li th:each="page,status:${pages}">
                                     <a style="border-radius: 50px"
                                        th:class="${status.index==currentPage?'btn btn-primary':'btn'}"
-                                       th:href="@{consultMlgs(page=${status.index},size=${size},numLot=${numLot})}"
+                                       th:href="@{consultRefs(page=${status.index},size=${size},numRef=${numRef})}"
                                        th:text="${status.index}+1">
                                     </a>
                                 </li>
