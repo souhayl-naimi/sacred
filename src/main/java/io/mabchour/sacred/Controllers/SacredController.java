@@ -30,52 +30,6 @@ public class SacredController {
     @Autowired
     MelangeRefRepository melangeRefRepository;
 
-/*
-    @RequestMapping(value = "/emps")
-    public String emplacements(Model model,
-                               @RequestParam(name = "page", defaultValue = "0") int page,
-                               @RequestParam(name = "size", defaultValue = "3") int size,
-                               @RequestParam(name = "num", defaultValue = "") String num){
-        Page<Emplacement> emplacementPage = emplacementRepository.findByNumEmplacementContainsIgnoreCase(num,PageRequest.of(page, size));
-        model.addAttribute("result", emplacementPage.getTotalElements());
-        model.addAttribute("empList", emplacementPage.getContent());
-        model.addAttribute("pages", new int[emplacementPage.getTotalPages()]);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("num", num);
-        model.addAttribute("size", size);
-        return "emplacements";
-    }
-
-    @RequestMapping(value = "/refs")
-    public String refs(Model model,
-                               @RequestParam(name = "page", defaultValue = "0") int page,
-                               @RequestParam(name = "size", defaultValue = "3") int size,
-                              Long id){
-        Page<MelangeRef> melangeRefs = melangeRefRepository.findByEmplacement_Id(id,PageRequest.of(page, size));
-        model.addAttribute("result", melangeRefs.getTotalElements());
-        model.addAttribute("melangeRefs", melangeRefs.getContent());
-        model.addAttribute("pages", new int[melangeRefs.getTotalPages()]);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("size", size);
-        return "references";
-    }
-
-    @RequestMapping(value = "/mlgs")
-    public String mlgs(Model model,
-                               @RequestParam(name = "page", defaultValue = "0") int page,
-                               @RequestParam(name = "size", defaultValue = "3") int size,
-                               Long idEmp,
-                               Long idRef){
-        Page<Melange> melanges = melangeRepository.findByMelangeRef_Emplacement_IdAndMelangeRef_Id(idEmp,idRef,PageRequest.of(page, size));
-        model.addAttribute("result", melanges.getTotalElements());
-        model.addAttribute("melanges", melanges.getContent());
-        model.addAttribute("pages", new int[melanges.getTotalPages()]);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("size", size);
-        return "melanges";
-    }
-*/
-
     @RequestMapping(value = "/")
     public String home(){
         return "template";
@@ -95,7 +49,6 @@ public class SacredController {
         model.addAttribute("numLot", numLot);
         return "consultMlgs";
     }
-
     @RequestMapping(value = "/formMelange", method = RequestMethod.GET)
     public String formMelange(Model model) {
         List<MelangeRef> refList = melangeRefRepository.findAll();

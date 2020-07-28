@@ -13,17 +13,11 @@
             <div class="col-md-12">
                 <div class="card mb-3" style="border-radius: 25px">
                     <div class="card-body">
-                        <h5 class="display-4 mx-4 mb-4">Consulter</h5>
+                        <h5 class="display-4 mx-4 mb-4">Réferences</h5>
                         <hr class="mb-5"/>
                         <form class="form-inline" th:action="@{consultRefs}" method="get">
                             <input class="form-control mr-sm-2" type="text" name="numRef" style="border-radius: 25px"
-                                   th:value="${numRef}" placeholder="Search">
-                            <button class="btn btn-outline-primary my-2 my-sm-0" style="border-radius: 25px"
-                                    type="submit">
-                                Chercher
-                            </button>
-                            <label style="margin-left: 2mm; font-weight: bold">Nb. Réferences : </label>
-                            <label style="margin-left: 4mm; " th:text="${result}"></label>
+                                   th:value="${numRef}" th:placeholder="${result}+' réferences'">
                         </form>
                         <div class="container mt-3">
                             <table class="table table-hover" style="border-radius: 20px" id="table">
