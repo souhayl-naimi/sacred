@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Controller
@@ -41,6 +44,9 @@ public class SacredController {
                               @RequestParam(name = "size", defaultValue = "10") int size,
                               @RequestParam(name = "numLot", defaultValue = "") String numLot){
         Page<Melange> melanges = melangeRepository.findByNumLotContains(numLot,PageRequest.of(page, size));
+        melanges.forEach(melange -> {
+            melange.setDays(90-ChronoUnit.DAYS.between(melange.getDateFabrication(), LocalDate.now()));
+        });
         model.addAttribute("result", melanges.getTotalElements());
         model.addAttribute("melanges", melanges.getContent());
         model.addAttribute("pages", new int[melanges.getTotalPages()]);
@@ -81,10 +87,10 @@ public class SacredController {
         Page<Emplacement> emplacements = emplacementRepository.findByNumEmplacementContainsIgnoreCase(numEmp,PageRequest.of(page, size));
         model.addAttribute("result", emplacements.getTotalElements());
         model.addAttribute("emps", emplacements.getContent());
+        model.addAttribute("numEmp", numEmp);
         model.addAttribute("pages", new int[emplacements.getTotalPages()]);
         model.addAttribute("currentPage", page);
         model.addAttribute("size", size);
-        model.addAttribute("numEmp", numEmp);
         return "consultEmps";
     }
 

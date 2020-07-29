@@ -20,6 +20,6 @@ public class MelangeRef {
     private String numRef;
     @ManyToOne
     private Emplacement emplacement;
-    @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "melangeRef",fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "melangeRef")
     private Collection<Melange> melanges;
 }

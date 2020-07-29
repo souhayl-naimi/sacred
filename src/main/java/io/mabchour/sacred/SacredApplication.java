@@ -11,6 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.PageRequest;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 
 
 @SpringBootApplication
@@ -31,6 +38,8 @@ public class SacredApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
+        Melange melange = melangeRepository.findByNumLotContains("LOT3", PageRequest.of(0,1)).getContent().get(0);
+        long months = ChronoUnit.DAYS.between(melange.getDateFabrication(),LocalDate.now());
+        System.out.println(months);
     }
 }

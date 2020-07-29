@@ -18,7 +18,7 @@ public class Emplacement {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String numEmplacement;
-    @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "emplacement",fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "emplacement")
     private Collection<MelangeRef> melangeRefs;
 
 }

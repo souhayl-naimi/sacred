@@ -7,6 +7,7 @@ import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -21,13 +22,12 @@ public class Melange {
     private Long id;
     private String numLot;
     private double dimensions;
+    private long days;
     private double poids;
-    @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateReception ;
-    @Temporal(TemporalType.DATE)
+    private LocalDate dateReception ;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateFabrication ;
+    private LocalDate dateFabrication ;
     @ManyToOne
     private MelangeRef melangeRef;
 

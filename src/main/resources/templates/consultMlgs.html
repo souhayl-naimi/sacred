@@ -28,7 +28,7 @@
                                     <th>Num. Emplacement</th>
                                     <th>Date. Fabrication</th>
                                     <th>Date. Creation</th>
-                                </tr>
+                                    <th>Days lefts</th>
                                 <tr th:each="m:${melanges}">
                                     <td th:text="${m.getId()}"></td>
                                     <td th:text="${m.getNumLot()}"></td>
@@ -36,6 +36,8 @@
                                     <td th:text="${m.getMelangeRef().getEmplacement().getNumEmplacement()}"></td>
                                     <td th:text="${m.getDateFabrication()}"></td>
                                     <td th:text="${m.getDateReception()}"></td>
+                                    <td th:text="${m.days}"></td>
+
                                     <td>
                                         <form th:action="@{deleteMelange}" method="post">
                                             <input type="hidden" name="id" th:value="${m.id}"/>
